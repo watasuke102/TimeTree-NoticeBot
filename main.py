@@ -24,6 +24,9 @@ timetree.calenderID = calenderID
 # 接続用オブジェクト生成
 client = discord.Client()
 
+@client.event
+async def on_ready():
+	print(timetree.getTodaysEvents())
 
 # 1分ごとに更新
 @tasks.loop(minutes=1)
