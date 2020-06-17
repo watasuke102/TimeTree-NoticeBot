@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import discord
+import timetree
 from discord.ext  import tasks
 from datetime     import datetime
-from timetree_sdk import TimeTreeApi
 
 # トークンの読み込み
 file       = open('settings')
@@ -19,9 +19,6 @@ print(
 print('Read Settings from file...Done')
 
 # TimeTree APIの設定
-api      = TimeTreeApi(keyAPI)
-#calender = api.get_calendar(calenderID)
-#print(calender.data.attributes.name)
 
 # 接続用オブジェクト生成
 client  = discord.Client()
