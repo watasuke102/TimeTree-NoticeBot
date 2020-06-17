@@ -17,6 +17,7 @@ def getEventFromAPI():
 	url = 'https://timetreeapis.com/calendars/{}/upcoming_events?timezone=Asia/Tokyo'.format(calenderID.join(calenderID.split()))
 	req = urllib.request.Request(url)
 	req.add_header('Authorization', 'Bearer ' + keyAPI)
+	req.add_header('Accept', 'application/vnd.timetree.v1+json')
 	with urllib.request.urlopen(req) as res:
 		data = json.loads(res.read().decode('UTF-8'))
 	return data
