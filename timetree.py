@@ -38,7 +38,7 @@ def getTodaysEvents():
 		if content['attributes']['all_day']:
 			todaysEvents += '終日\n'
 		else:
-			todaysEvents += getEventStartAt(content) + '〜' + getEventEndAt(content) + '\n'
+			todaysEvents += (getEventStartAt(content) + '〜' + getEventEndAt(content) + '\n')
 	return todaysEvents
 
 
@@ -52,5 +52,5 @@ def getEventAfterTenMinutes():
 	for content in data['data']:
 		print(now + '  (now):(start)  ' + getEventStartAt(content))
 		if getEventStartAt(content) == now:
-			event += '@everyone\n10分後：' + getEventTitle(content)
+			event += ('@everyone\n10分後：' + getEventTitle(content))
 	return event
