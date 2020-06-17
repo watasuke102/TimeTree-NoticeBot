@@ -32,7 +32,7 @@ def getEventEndAt(content):
 
 # イベントの名前を返す
 def getEventTitle(content):
-	content['attributes']['title']
+	return content['attributes']['title']
 
 # その日のイベントを取得し、一覧にした文字列を返す
 def getTodaysEvents():
