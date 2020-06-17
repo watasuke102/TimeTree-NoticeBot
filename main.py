@@ -2,8 +2,15 @@
 #coding:utf-8
 import timetree
 import discord
+import sys
 from discord.ext  import tasks
 from datetime     import datetime
+
+
+# コマンドライン引数に-dがあればデバッグ表示をON
+if sys.argv[1] == '-d':
+	timetree.isDebugMode = True
+
 
 # トークン等の読み込み
 with open('settings', 'r') as file:

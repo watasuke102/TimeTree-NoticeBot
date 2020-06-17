@@ -4,6 +4,13 @@ import datetime
 
 keyAPI     = ''
 calenderID = ''
+isDebugMode = False
+
+# デバッグ表示
+def debug(string):
+	if (isDebugMode):
+		print(string)
+
 
 # APIでjsonを取得
 def getEventFromAPI():
