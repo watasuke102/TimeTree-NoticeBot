@@ -17,12 +17,6 @@ with open('settings', 'r') as file:
 	keyAPI    =''.join(keyAPI    .split())
 	calenderID=''.join(calenderID.split())
 
-print('token: '            + token     )
-print('channel: '          + channelID )
-print('TimeTree API Key: ' + keyAPI    )
-print('calender ID: '      + calenderID)
-print('> Read Settings from file...Done')
-
 # TimeTree APIの設定
 timetree.keyAPI     = keyAPI
 timetree.calenderID = calenderID
