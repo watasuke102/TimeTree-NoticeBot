@@ -1,6 +1,6 @@
 import urllib.request
 import json
-from datetime import datetime
+import datetime
 
 keyAPI     = ''
 calenderID = ''
@@ -23,10 +23,6 @@ def getEventStartAt(content):
 def getEventEndAt(content):
 	return content['attributes']['start_at'][11:16]
 
-# イベントの名前を返す
-def getEventTitle(content):
-	content['attributes']['all_day']
-
 # その日のイベントを取得し、一覧にした文字列を返す
 def getTodaysEvents():
 	data = getEventFromAPI()
@@ -34,7 +30,7 @@ def getTodaysEvents():
 	todaysEvents = '@everyone\nおはようございます。今日の予定は{}件です。\n\n'.format(len(data['data']))
 	# 予定のタイトルを取得し表示
 	for content in data['data']:
-		todaysEvents += ('・' + getEventTitle(content) + '：')
+		todaysEvents += ('・' + content['attributes']['all_day'] + '：')
 		if content['attributes']['all_day']:
 			todaysEvents += '終日\n'
 		else:
@@ -47,10 +43,10 @@ def getTodaysEvents():
 def getEventAfterTenMinutes():
 	data  = getEventFromAPI()
 	event = ''
-	a = datetime.now() + datetime.timedelta(minutes=10)
+	a = datetime.datetime.now() + datetime.timedelta(minutes=10)
 	now = a.strftime('%H:%M')
 	for content in data['data']:
-		print(now + '(now):(start)' + getEventStartAt(content))
+		print(now + '  (now):(start)  ' + getEventStartAt(content))
 		if getEventStartAt(content) == now:
-			event += '@everyone\n10分後：' + getEventTitle(content)
+			event += '@everyone\n10分後：' + content['attributes']['all_day']
 	return event
