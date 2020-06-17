@@ -30,7 +30,7 @@ def getTodaysEvents():
 	todaysEvents = '@everyone\nおはようございます。今日の予定は{}件です。\n\n'.format(len(data['data']))
 	# 予定のタイトルを取得し表示
 	for content in data['data']:
-		todaysEvents += ('・' + content['attributes']['all_day'] + '：')
+		todaysEvents += ('・' + content['attributes']['title'] + '：')
 		if content['attributes']['all_day']:
 			todaysEvents += '終日\n'
 		else:
