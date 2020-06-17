@@ -1,4 +1,5 @@
 from timetree_sdk import TimeTreeApi
 
-def init():
-	print('init')
+
+def init(api_temp):
+	keyAPI = api_temp

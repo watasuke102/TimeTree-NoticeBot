@@ -19,14 +19,15 @@ print(
 print('Read Settings from file...Done')
 
 # TimeTree APIの設定
+timetree.init(keyAPI)
 
 # 接続用オブジェクト生成
 client  = discord.Client()
 print('Create client...Done')
 
+
 # 10分ごとに更新
 # 今はテスト用に30秒ごとにしている
-
 @tasks.loop(seconds=30)
 async def loop():
 	print('-- Begin of the loop --')
@@ -42,6 +43,7 @@ async def loop():
 		await channel.send('おはよう')
 	print('Send Message')
 	print('-- End of the loop --\n')
+
 
 loop.start()
 print('\n---RUNNNING CLIENT---\n')
