@@ -46,6 +46,7 @@ def getTodaysEvents():
 			todaysEvents += '終日\n'
 		else:
 			todaysEvents += (getEventStartAt(content) + '〜' + getEventEndAt(content) + '\n')
+			debug(getEventTitle(content) + ' : ' + getEventStartAt(content) + '〜' + getEventEndAt(content) + '\n')
 	return todaysEvents
 
 
@@ -57,7 +58,7 @@ def getEventAfterTenMinutes():
 	a = datetime.datetime.now() + datetime.timedelta(minutes=10)
 	now = a.strftime('%H:%M')
 	for content in data['data']:
-		print(now + '  (now):(start)  ' + getEventStartAt(content))
+		debug(now + '  (now):(start)  ' + getEventStartAt(content))
 		if getEventStartAt(content) == now:
 			event += ('@everyone\n10分後：' + getEventTitle(content))
 	return event

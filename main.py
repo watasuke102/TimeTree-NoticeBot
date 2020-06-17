@@ -33,11 +33,12 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
-	print(timetree.getTodaysEvents())
+	timetree.debug(timetree.getTodaysEvents())
 
 # 1分ごとに更新
 @tasks.loop(minutes=1)
 async def loop():
+	timetree.debug('---Begin Loop---')
 	channel = client.get_channel(int(channelID))
 	afterTenMinutes = timetree.getEventAfterTenMinutes()
 	# 10分後に予定があれば、それを通知
@@ -47,6 +48,7 @@ async def loop():
 	now = datetime.now().strftime('%H:%M')
 	if now == '08:00':
 		await channel.send(timetree.getTodaysEvents())
+	timetree.debug('---End Loop---')
 
 
 loop.start()
