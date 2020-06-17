@@ -23,6 +23,10 @@ def getEventStartAt(content):
 def getEventEndAt(content):
 	return content['attributes']['start_at'][11:16]
 
+# イベントの名前を返す
+def getEventTitle(content):
+	content['attributes']['title']
+
 # その日のイベントを取得し、一覧にした文字列を返す
 def getTodaysEvents():
 	data = getEventFromAPI()
@@ -30,7 +34,7 @@ def getTodaysEvents():
 	todaysEvents = '@everyone\nおはようございます。今日の予定は{}件です。\n\n'.format(len(data['data']))
 	# 予定のタイトルを取得し表示
 	for content in data['data']:
-		todaysEvents += ('・' + content['attributes']['title'] + '：')
+		todaysEvents += ('・' + getEventTitle(content) + '：')
 		if content['attributes']['all_day']:
 			todaysEvents += '終日\n'
 		else:
@@ -48,5 +52,5 @@ def getEventAfterTenMinutes():
 	for content in data['data']:
 		print(now + '  (now):(start)  ' + getEventStartAt(content))
 		if getEventStartAt(content) == now:
-			event += '@everyone\n10分後：' + content['attributes']['all_day']
+			event += '@everyone\n10分後：' + getEventTitle(content)
 	return event
