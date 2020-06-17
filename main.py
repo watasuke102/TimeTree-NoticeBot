@@ -29,10 +29,12 @@ client = discord.Client()
 @tasks.loop(minutes=1)
 async def loop():
 	channel = client.get_channel(int(channelID))
-	# 現在時刻を取得
+	afterTenMinutes = timetree.getEventAfterTenMinutes()
+	# 10分後に予定があれば、それを通知
+	if afterTenMinutes != '':
+		await channel.send(afterTenMinutes)
+	# 現在時刻を取得し、8時なら予定を表示
 	now = datetime.now().strftime('%H:%M')
-	# 8時ならおはようする
-	# デバッグのため時間を変えてる
 	if now == '08:00':
 		await channel.send(timetree.getTodaysEvents())
 

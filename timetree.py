@@ -31,7 +31,7 @@ def getEventTitle(content):
 def getTodaysEvents():
 	data = getEventFromAPI()
 	# 予定の件数を取得
-	todaysEvents = 'おはようございます。今日の予定は{}件です。\n\n'.format(len(data['data']))
+	todaysEvents = '@everyone\nおはようございます。今日の予定は{}件です。\n\n'.format(len(data['data']))
 	# 予定のタイトルを取得し表示
 	for content in data['data']:
 		todaysEvents += ('・' + getEventTitle(content) + '：')
@@ -50,6 +50,7 @@ def getEventAfterTenMinutes():
 	a = datetime.now() + datetime.timedelta(minutes=10)
 	now = a.strftime('%H:%M')
 	for content in data['data']:
+		print(now + '(now):(start)' + getEventStartAt(content))
 		if getEventStartAt(content) == now:
-			event += getEventTitle(content)
-			print(getEventTitle(content)+' | ' + now+'(now):(start)'+getEventStartAt(content))
+			event += '@everyone\n10分後：' + getEventTitle(content)
+	return event
