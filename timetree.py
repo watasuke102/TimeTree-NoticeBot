@@ -14,7 +14,9 @@ def getTodaysEvents():
 	# APIでjsonを取得
 	with urllib.request.urlopen(req) as res:
 		data = json.loads(res.read().decode('UTF-8'))
+		# 予定の件数を取得
 		todaysEvents += '今日の予定は{}件です。\n'.format(len(data['data']))
+		# 予定のタイトルを取得し表示
 		for content in data['data']:
 			todaysEvents += ('・' + content['attributes']['title'] + '\n')
 	return todaysEvents

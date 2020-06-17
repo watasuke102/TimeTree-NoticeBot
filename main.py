@@ -26,31 +26,21 @@ print('> Read Settings from file...Done')
 # TimeTree APIの設定
 timetree.keyAPI     = keyAPI
 timetree.calenderID = calenderID
-print('---EVENTS---')
-timetree.getTodaysEvents()
-print('---EVENTS END---')
 
 # 接続用オブジェクト生成
 client  = discord.Client()
-print('> Create client...Done')
 
 
 # 10分ごとに更新
-# 今はテスト用に30秒ごとにしている
-@tasks.loop(seconds=30)
+@tasks.loop(minutes=10)
 async def loop():
-	print('-- Begin of the loop --')
 	channel = client.get_channel(int(channelID))
-	print('  > Get Channel...Done')
 	# 現在時刻を取得
 	now = datetime.now().strftime('%H:%M')
-	print('  > Get time...Done\nnow: ' + now)
 	# 8時ならおはようする
 	# デバッグのため時間を変えてる
-	if now == '13:11':
-		print('NOW')
-		await channel.send('おはよう')
-	print('-- End of the loop --\n')
+	if now == '08:00':
+		await channel.send(timetree.getTodaysEvents())
 
 
 loop.start()
