@@ -22,11 +22,11 @@ timetree.keyAPI     = keyAPI
 timetree.calenderID = calenderID
 
 # 接続用オブジェクト生成
-client  = discord.Client()
+client = discord.Client()
 
 
-# 10分ごとに更新
-@tasks.loop(minutes=10)
+# 1分ごとに更新
+@tasks.loop(minutes=1)
 async def loop():
 	channel = client.get_channel(int(channelID))
 	# 現在時刻を取得
@@ -38,5 +38,4 @@ async def loop():
 
 
 loop.start()
-print('\n---RUNNNING CLIENT---\n')
 client.run(token)
