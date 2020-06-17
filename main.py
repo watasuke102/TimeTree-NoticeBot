@@ -26,11 +26,6 @@ api      = TimeTreeApi(keyAPI)
 client  = discord.Client()
 print('Create Client...Done')
 
-@client.event
-async def on_ready():
-	channel = client.get_channel(int(channelID))
-	await channel.send('起動しました')
-
 # 10分ごとに更新
 # 今はテスト用に10秒ごとにしている
 @tasks.loop(seconds=10)
