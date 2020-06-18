@@ -75,4 +75,5 @@ async def loop():
 
 
 loop.start()
+print('---TimeTree Notice bot is running---')
 client.run(token)
