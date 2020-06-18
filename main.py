@@ -8,11 +8,14 @@ from datetime     import datetime
 
 
 # コマンドライン引数に-dがあればデバッグ表示をON
-if sys.argv[1] == '-d' | sys.argv[2] == '-d':
-	timetree.isDebugMode = True
 # コマンドライン引数に-eがあれば@everyoneをOFF
-if sys.argv[1] == '-e' | sys.argv[2] == '-e':
-	timetree.isMentionEveryone = False
+for arg in sys.argv:
+	if arg == 'main.py':
+		continue
+	if arg == '-d' or arg == '--debug':
+		timetree.isDebugMode = True
+	if arg == '-e' or arg == '--everyone-disable':
+		timetree.isMentionEveryone = False
 
 
 # トークン等の読み込み
