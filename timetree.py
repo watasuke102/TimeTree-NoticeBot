@@ -56,10 +56,10 @@ def getTodaysEvents():
 def getEventAfterTenMinutes():
 	data  = getEventFromAPI()
 	event = ''
-	a = datetime.datetime.now() + datetime.timedelta(minutes=10)
+	a = datetime.datetime.now() + datetime.timedelta(minutes=10) - datetime.timedelta(hours=9)
 	now = a.strftime('%H:%M')
 	for content in data['data']:
-		debug(now + '  (now):(start)  ' + getEventStartAt(content))
+		debug(now + '  (now)'+getEventTitle(content)+'(start)  ' + getEventStartAt(content))
 		if getEventStartAt(content) == now:
 			event += ('@everyone\n10分後：' + getEventTitle(content))
 	return event

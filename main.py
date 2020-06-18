@@ -48,7 +48,7 @@ async def loop():
 	now = datetime.now().strftime('%H:%M')
 	if now == '08:00':
 		await channel.send(timetree.getTodaysEvents())
-	timetree.debug('---End Loop---')
+	timetree.debug('---End Loop---\n')
 
 
 loop.start()
