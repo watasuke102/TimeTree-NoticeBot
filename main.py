@@ -16,6 +16,23 @@ for arg in sys.argv:
 		timetree.isDebugMode = True
 	if arg == '-e' or arg == '--everyone-disable':
 		timetree.isMentionEveryone = False
+	if arg == '-h' or arg == '--help':
+		print('TimeTree-NoticeBot : TimeTreeの予定を確認して通知するDiscord用Botスクリプト\n')
+
+		print('・設定ファイルについて')
+		print('このスクリプトはスクリプトがあるフォルダ内にある、「settings」ファイルから設定を読み込みます。')
+		print('settingsは以下のように読み込まれます。')
+		print('  1行目 : Botアクセストークン')
+		print('  2行目 : チャンネルID')
+		print('  3行目 : TimeTree API キー')
+		print('  4行目 : TimeTree カレンダーID')
+		print('5行目以降であれば、メモなどが書かれていても動作には影響しません。\n')
+
+		print('・コマンドライン引数')
+		print('  -e [ --everyone-disable ] : @everyone をしないようになる')
+		print('  -d [ --debug ]            : ターミナルにデバッグ表示を行う')
+		print('  -h [ --help ]             : このヘルプを表示\n')
+		exit(0)
 
 
 # トークン等の読み込み
