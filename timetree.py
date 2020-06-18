@@ -5,6 +5,7 @@ import datetime
 keyAPI     = ''
 calenderID = ''
 isDebugMode = False
+isMentionEveryone = True
 
 # デバッグ表示
 def debug(string):
@@ -38,8 +39,11 @@ def getEventTitle(content):
 # その日のイベントを取得し、一覧にした文字列を返す
 def getTodaysEvents():
 	data = getEventFromAPI()
+	todaysEvents = ''
+	if isMentionEveryone:
+		todaysEvents = '@everyone\n'
 	# 予定の件数を取得
-	todaysEvents = '@everyone\nおはようございます。今日の予定は{}件です。\n\n'.format(len(data['data']))
+	todaysEvents += 'おはようございます。今日の予定は{}件です。\n\n'.format(len(data['data']))
 	# 予定のタイトルを取得し表示
 	for content in data['data']:
 		todaysEvents += ('・' + getEventTitle(content) + '：')
@@ -61,5 +65,7 @@ def getEventAfterTenMinutes():
 	for content in data['data']:
 		debug(now + '  (now)'+getEventTitle(content)+'(start)  ' + getEventStartAt(content))
 		if getEventStartAt(content) == now:
-			event += ('@everyone\n10分後：' + getEventTitle(content))
+			if isMentionEveryone:
+				event+='@everyone\n'
+			event += ('10分後：' + getEventTitle(content))
 	return event
