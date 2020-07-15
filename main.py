@@ -69,11 +69,11 @@ async def loop():
 	channel = client.get_channel(int(channelID))
 	afterTenMinutes = timetree.getEventAfterTenMinutes()
 	# 10分後に予定があれば、それを通知
-	if afterTenMinutes != '':
+	if afterTenMinutes != '' and silentmode != False:
 		await channel.send(afterTenMinutes)
 	# 現在時刻を取得し、8時なら予定を表示
 	now = datetime.now().strftime('%H:%M')
-	if now == '08:00':
+	if now == '08:00' and silentmode != False:
 		await channel.send(timetree.getTodaysEvents())
 	timetree.debug('---End Loop---\n')
 
