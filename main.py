@@ -3,6 +3,7 @@
 import timetree
 import discord
 import sys
+import os
 from discord.ext  import tasks
 from datetime     import datetime
 
@@ -11,8 +12,6 @@ silentmode = False
 # コマンドライン引数に-dがあればデバッグ表示をON
 # コマンドライン引数に-eがあれば@everyoneをOFF
 for arg in sys.argv:
-	if arg == 'main.py':
-		continue
 	if arg == '-s' or arg == '--silent':
 		silentmode = True
 	if arg == '-d' or arg == '--debug':
@@ -40,7 +39,7 @@ for arg in sys.argv:
 
 
 # トークン等の読み込み
-with open('settings', 'r') as file:
+with open(os.path.dirname(__file__)+'/settings', 'r') as file:
 	token      = file.readline()
 	channelID  = file.readline()
 	keyAPI     = file.readline()
