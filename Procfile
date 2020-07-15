@@ -1,1 +1,0 @@
-timetreenoticebot: python main.py
