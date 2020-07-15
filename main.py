@@ -39,7 +39,7 @@ for arg in sys.argv:
 
 
 # トークン等の読み込み
-with open(os.path.dirname(__file__)+'/settings', 'r') as file:
+with open(os.path.dirname(__file__)+'settings', 'r') as file:
 	token      = file.readline()
 	channelID  = file.readline()
 	keyAPI     = file.readline()
