@@ -6,12 +6,15 @@ import sys
 from discord.ext  import tasks
 from datetime     import datetime
 
+silentmode = False
 
 # コマンドライン引数に-dがあればデバッグ表示をON
 # コマンドライン引数に-eがあれば@everyoneをOFF
 for arg in sys.argv:
 	if arg == 'main.py':
 		continue
+	if arg == '-s' or arg == '--silent':
+		silentmode = True
 	if arg == '-d' or arg == '--debug':
 		timetree.isDebugMode = True
 	if arg == '-e' or arg == '--everyone-disable':
@@ -30,6 +33,7 @@ for arg in sys.argv:
 
 		print('・コマンドライン引数')
 		print('  -e [ --everyone-disable ] : @everyone をしないようになる')
+		print('  -s [ --silent ]           : Bot起動時のメッセージを非表示にする')
 		print('  -d [ --debug ]            : ターミナルにデバッグ表示を行う')
 		print('  -h [ --help ]             : このヘルプを表示\n')
 		exit(0)
@@ -75,5 +79,6 @@ async def loop():
 
 
 loop.start()
-print('---TimeTree Notice bot is running---')
+if silentmode:
+	print('---TimeTree Notice bot is running---')
 client.run(token)
