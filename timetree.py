@@ -30,14 +30,18 @@ def getEventFromAPI():
 # イベントの開始時間をJSTで返す
 def getEventStartAt(content):
 	s = str(int(content['attributes']['start_at'][11:16].replace(':',''))+900)
-	debug("[debug] startAt-"+s)
-	return s[0:2]+":"+s[2:4]
+	if len(s) == 3:
+		return "0"+s[0:1]+":"+s[1:3]
+	else:
+		return s[0:2]+":"+s[2:4]
 
 # イベントの終了時間をJSTで返す
 def getEventEndAt(content):
 	s = str(int(content['attributes']['end_at'][11:16].replace(':',''))+900)
-	debug("[debug] endAt-"+s)
-	return s[0:2]+":"+s[2:4]
+	if len(s) == 3:
+		return "0"+s[0:1]+":"+s[1:3]
+	else:
+		return s[0:2]+":"+s[2:4]
 
 # イベントの名前を返す
 def getEventTitle(content):
