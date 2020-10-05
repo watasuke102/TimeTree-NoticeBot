@@ -75,7 +75,7 @@ def getEventAfterTenMinutes():
 	now = a.strftime('%H:%M')
 	for content in data['data']:
 		debug(now + '  (now)'+getEventTitle(content)+'(start)  ' + getEventStartAt(content))
-		if getEventStartAt(content) == now and content['attributes']['all_day'] == false:
+		if getEventStartAt(content) == now and content['attributes']['all_day'] == False:
 			if isMentionEveryone:
 				event+='@everyone\n'
 			event += ('10分後：' + getEventTitle(content))
