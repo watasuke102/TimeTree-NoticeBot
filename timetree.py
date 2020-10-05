@@ -23,14 +23,21 @@ def getEventFromAPI():
 		data = json.loads(res.read().decode('UTF-8'))
 	return data
 
+# 時刻はUTCで表示されるので，JST（UTC+0900）に変換する
+# 20:00開始イベントの場合，取得した開始時間は11:00になっているので，
+# int()で整数1100にする→900を足して2000にする→再度文字列に変換する
 
-# イベントの開始時間を返す
+# イベントの開始時間をJSTで返す
 def getEventStartAt(content):
-	return content['attributes']['start_at'][11:16]
+	s = str(int(content['attributes']['start_at'][11:16].replace(':',''))+900)
+	debug("[debug] startAt-"+s)
+	return s[0:2]+":"+s[2:4]
 
-# イベントの終了時間を返す
+# イベントの終了時間をJSTで返す
 def getEventEndAt(content):
-	return content['attributes']['start_at'][11:16]
+	s = str(int(content['attributes']['end_at'][11:16].replace(':',''))+900)
+	debug("[debug] endAt-"+s)
+	return s[0:2]+":"+s[2:4]
 
 # イベントの名前を返す
 def getEventTitle(content):
