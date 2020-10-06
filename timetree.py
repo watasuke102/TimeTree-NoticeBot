@@ -25,11 +25,13 @@ def getEventFromAPI():
 
 # 時刻はUTCで表示されるので，JST（UTC+0900）に変換する
 # 20:00開始イベントの場合，取得した開始時間は11:00になっているので，
-# int()で整数1100にする→900を足して2000にする→再度文字列に変換する
+# int()で整数1100にする→900を足して2000にする→再度文字列（20:00）に変換する
+# 6:00開始イベントの場合，開始時刻は21:00になっているので，
+# int()で整数2100にする→900足して3000→3000/2400の剰余は600→6:00にする
 
 # イベントの開始時間をJSTで返す
 def getEventStartAt(content):
-	s = str(int(content['attributes']['start_at'][11:16].replace(':',''))+900)
+	s = str((int(content['attributes']['start_at'][11:16].replace(':',''))+900)%2400)
 	if len(s) == 3:
 		return "0"+s[0:1]+":"+s[1:3]
 	else:
@@ -37,7 +39,7 @@ def getEventStartAt(content):
 
 # イベントの終了時間をJSTで返す
 def getEventEndAt(content):
-	s = str(int(content['attributes']['end_at'][11:16].replace(':',''))+900)
+	s = str((int(content['attributes']['end_at'][11:16].replace(':',''))+900)%2400)
 	if len(s) == 3:
 		return "0"+s[0:1]+":"+s[1:3]
 	else:
