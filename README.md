@@ -1,4 +1,6 @@
 # TimeTreeお知らせBot
+Discord.pyがROになったらしいのでメンテしません  
+[watasuke102/TimeTree-NoticeBot-rust](https://github.com/watasuke102/TimeTree-NoticeBot-rust)をよろしくお願いします
 
 
 ## これは何
